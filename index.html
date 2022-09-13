@@ -59,8 +59,9 @@
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
 
-    scene.clearColor = new BABYLON.Color3(.2,.2,.2)
-    scene.environmentTexture = new BABYLON.HDRCubeTexture("textures/room.hdr", scene, 512);
+    scene.clearColor = new BABYLON.Color3(.2,.2,.2);
+    scene.ambientColor = new BABYLON.Color3(1,.2,.2);
+    scene.environmentTexture = new BABYLON.HDRCubeTexture("https://raw.githubusercontent.com/andrewqTC/3Dlab/main/christmas_photo_studio_04_1k.hdr", scene, 512);
 
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.ArcRotateCamera("camera", BABYLON.Tools.ToRadians(90), BABYLON.Tools.ToRadians(65), 10, BABYLON.Vector3.Zero(), scene);
@@ -82,7 +83,7 @@
     // var dirLight = new BABYLON.DirectionalLight("dirLight", new BABYLON.Vector3(0.25,-1,-0.25), scene);
     // dirLight.intensity = 4;
     var hemiLight = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(0, 1, 0), scene);
-    hemiLight.intensity = .7;
+    hemiLight.intensity = .1;
 
     // Our built-in 'ground' shape.
     // var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
