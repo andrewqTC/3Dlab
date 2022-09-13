@@ -59,21 +59,30 @@
     // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
 
+    scene.clearColor = new BABYLON.Color3(.2,.2,.2)
+    scene.environmentTexture = new BABYLON.HDRCubeTexture("textures/room.hdr", scene, 512);
+
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.ArcRotateCamera("camera", BABYLON.Tools.ToRadians(90), BABYLON.Tools.ToRadians(65), 10, BABYLON.Vector3.Zero(), scene);
     camera.wheelPrecision = 50;
+    camera.fov = .45;
 
     // This targets the camera to scene origin
-    camera.setTarget(BABYLON.Vector3.Up());
+    camera.setTarget(new BABYLON.Vector3(0,1,-1));
 
     // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    // var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-    // Default intensity is 1. Let's dim the light a small amount
-    light.intensity = 0.7;
+    // // Default intensity is 1. Let's dim the light a small amount
+    // light.intensity = 1;
+
+    // var dirLight = new BABYLON.DirectionalLight("dirLight", new BABYLON.Vector3(0.25,-1,-0.25), scene);
+    // dirLight.intensity = 4;
+    var hemiLight = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+    hemiLight.intensity = .7;
 
     // Our built-in 'ground' shape.
     // var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
@@ -85,9 +94,11 @@
     var button = document.createElement("button");
     button.style.top = "100px";
     button.style.right = "30px";
-    button.textContent = "Cushion 1";
+    button.textContent = "seat 1";
     button.style.width = "100px";
     button.style.height = "50px";
+    button.style.fontWeight = "bold";
+    button.style.fontSize = "Large";
     button.id = "c1";
     button.setAttribute = ("id", "but");
     button.style.position = "absolute";
@@ -97,33 +108,49 @@
     var button2 = document.createElement("button");
     button2.style.top = "150px";
     button2.style.right = "30px";
-    button2.textContent = "Cushion 2";
+    button2.textContent = "seat 2";
     button2.style.width = "100px";
     button2.style.height = "50px";
     button2.id = "c2";
     button2.setAttribute = ("id", "but");
     button2.style.position = "absolute";
     button2.style.color = "black";
+    button2.style.fontWeight = "bold";
+    button2.style.fontSize = "Large";
     document.body.appendChild(button2);
 
     var button3 = document.createElement("button");
     button3.style.top = "200px";
     button3.style.right = "30px";
-    button3.textContent = "Cushion 3";
+    button3.textContent = "seat 3";
     button3.style.width = "100px";
     button3.style.height = "50px";
     button3.id = "c3";
     button3.setAttribute = ("id", "but");
     button3.style.position = "absolute";
     button3.style.color = "black";
+    button3.style.fontWeight = "bold";
+    button3.style.fontSize = "Large";
     document.body.appendChild(button3);
 
     var cushion;
+
+    BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion1.glb", scene, function(newMeshes){
+            newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = .1;
+            cushion = newMeshes[0];
+    });
+    BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "legs_1.glb", scene, function(newMeshes){
+        newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+        newMeshes[0].position.y = -.5;
+        leg = newMeshes[0];
+    });
 
     button.addEventListener("click", () => {
         var cushion2 = cushion;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion1.glb", scene, function(newMeshes){
             newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = .1;
             cushion = newMeshes[0];
         });
         cushion2.dispose();
@@ -133,6 +160,7 @@
         var cushion2 = cushion;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion2.glb", scene, function(newMeshes){
             newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = .1;
             cushion = newMeshes[0];
         });
         cushion2.dispose();
@@ -142,6 +170,7 @@
         var cushion2 = cushion;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion3.glb", scene, function(newMeshes){
             newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = .1;
             cushion = newMeshes[0];
         });
         cushion2.dispose();
@@ -157,6 +186,8 @@
     legButton1.setAttribute = ("id", "but");
     legButton1.style.position = "absolute";
     legButton1.style.color = "black";
+    legButton1.style.fontWeight = "bold";
+    legButton1.style.fontSize = "Large";
     document.body.appendChild(legButton1);
 
     var legButton2 = document.createElement("button");
@@ -169,6 +200,8 @@
     legButton2.setAttribute = ("id", "but");
     legButton2.style.position = "absolute";
     legButton2.style.color = "black";
+    legButton2.style.fontWeight = "bold";
+    legButton2.style.fontSize = "Large";
     document.body.appendChild(legButton2);
 
     var legButton3 = document.createElement("button");
@@ -181,6 +214,8 @@
     legButton3.setAttribute = ("id", "but");
     legButton3.style.position = "absolute";
     legButton3.style.color = "black";
+    legButton3.style.fontWeight = "bold";
+    legButton3.style.fontSize = "Large";
     document.body.appendChild(legButton3);
 
     var leg;
@@ -189,6 +224,7 @@
         var leg2 = leg;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "legs_1.glb", scene, function(newMeshes){
             newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = -.5;
             leg = newMeshes[0];
         });
         leg2.dispose();
@@ -198,6 +234,7 @@
         var leg2 = leg;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "legs_2.glb", scene, function(newMeshes){
             newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = -.5;
             leg = newMeshes[0];
         });
         leg2.dispose();
@@ -207,14 +244,34 @@
         var leg2 = leg;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "legs_3.glb", scene, function(newMeshes){
             newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = -.5;
             leg = newMeshes[0];
         });
         leg2.dispose();
     })
 
+    function gameLogic() {
+        if(cushion && leg){
+            cushion.position.y = cushion.position.y * .9;
+            leg.position.y = leg.position.y * .9;
+        }
+    }
+
+    // see this discussion: https://gist.github.com/addyosmani/5434533
+    // this will sync your game logic updates with the render updates
+    function loop() {
+        window.requestAnimationFrame(loop)
+        gameLogic();
+    }
+    loop();
+
 
     return scene;
 }
+
+
+
+
                 window.initFunction = async function() {
                     
                     
