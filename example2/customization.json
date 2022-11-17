@@ -1,89 +1,89 @@
 {
-  "path": "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/example2/",
-  "options": [
-    {
-      "name": "features",
-      "type": "string",
-      "choices": []
-    },
-    {
-      "name": "shape",
-      "type": "string",
-      "choices": []
-    },
-    {
-      "name": "model",
-      "type": "string",
-      "choices": []
-    }
-  ],
-  "models": [
-    {
-      "name": "snowman",
-      "link": "prototypeSnowman.babylon",
-      "loadIf": {
-        "condition": "attribute",
-        "isEqual": [
-          {
-            "option": "model",
-            "choice": "snowman"
-          }
-        ],
-        "isNotEqual": []
+    "path": "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/example2/",
+    "options": [
+      {
+        "name": "features",
+        "type": "string",
+        "choices": ["eyes", "carrot"]
       },
-      "disposeIf": {
-        "condition": "attribute",
-        "isEqual": [],
-        "isNotEqual": [
-          {
-            "option": "model",
-            "choice": "snowman"
-          }
-        ]
-      }
-    },
-    {
-      "name": "shapes",
-      "link": "blenderShapes.babylon",
-      "loadIf": {
-        "condition": "attribute",
-        "isEqual": [
-          {
-            "option": "model",
-            "choice": "shapes"
-          }
-        ],
-        "isNotEqual": []
+      {
+        "name": "shape",
+        "type": "string",
+        "choices": ["cube", "sphere", "cone"]
       },
-      "disposeIf": {
-        "condition": "attribute",
-        "isEqual": [],
-        "isNotEqual": [
-          {
-            "option": "model",
-            "choice": "shapes"
-          }
-        ]
+      {
+        "name": "model",
+        "type": "string",
+        "choices": ["snowman", "shapes"]
       }
-    }
-  ],
-  "tags": [
-    {
-      "type": "visibilitySwitch",
-      "option": "shape",
-      "case": {
-        "cube": "box",
-        "sphere": "sphere",
-        "cone": "cone"
+    ],
+    "models": [
+      {
+        "name": "snowman",
+        "link": "prototypeSnowman.babylon",
+        "loadIf": {
+          "condition": "attribute",
+          "isEqual": [
+            {
+              "option": "model",
+              "choice": "snowman"
+            }
+          ],
+          "isNotEqual": []
+        },
+        "disposeIf": {
+          "condition": "attribute",
+          "isEqual": [],
+          "isNotEqual": [
+            {
+              "option": "model",
+              "choice": "snowman"
+            }
+          ]
+        }
+      },
+      {
+        "name": "shapes",
+        "link": "blenderShapes.babylon",
+        "loadIf": {
+          "condition": "attribute",
+          "isEqual": [
+            {
+              "option": "model",
+              "choice": "shapes"
+            }
+          ],
+          "isNotEqual": []
+        },
+        "disposeIf": {
+          "condition": "attribute",
+          "isEqual": [],
+          "isNotEqual": [
+            {
+              "option": "model",
+              "choice": "shapes"
+            }
+          ]
+        }
       }
-    },
-    {
-      "type": "visibilitySwitch",
-      "option": "features",
-      "case": {
-        "carrot": "nose",
-        "eyes": "eyes"
+    ],
+    "tags": [
+      {
+        "type": "visibilitySwitch",
+        "option": "shape",
+        "case": {
+          "cube": "box",
+          "sphere": "sphere",
+          "cone": "cone"
+        }
+      },
+      {
+        "type": "visibilitySwitch",
+        "option": "features",
+        "case": {
+          "carrot": "nose",
+          "eyes": "eyes"
+        }
       }
-    }
-  ]
-}
+    ]
+  }
