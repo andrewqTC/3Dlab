@@ -71,7 +71,7 @@
       {
         "type": "visibilitySwitch",
         "option": "shape",
-        "case": {
+        "cases": {
           "cube": "box",
           "sphere": "sphere",
           "cone": "cone"
@@ -80,7 +80,7 @@
       {
         "type": "visibilitySwitch",
         "option": "features",
-        "case": {
+        "cases": {
           "carrot": "nose",
           "eyes": "eyes"
         }
