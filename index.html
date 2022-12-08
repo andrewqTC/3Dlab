@@ -157,7 +157,7 @@
         cushion2.dispose();
     })
             
-    window.addEventListener('message', event => {
+    window.onmessage = (event) => {
         console.log("message recieved");
         var cushion2 = cushion;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion1.glb", scene, function(newMeshes){
@@ -166,7 +166,7 @@
             cushion = newMeshes[0];
         });
         cushion2.dispose();
-    });
+    };
             
     button2.addEventListener("click", () => {
         var cushion2 = cushion;
