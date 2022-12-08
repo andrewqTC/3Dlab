@@ -156,7 +156,18 @@
         });
         cushion2.dispose();
     })
-
+            
+    window.addEventListener('message', event => {
+        console.log("message recieved");
+        var cushion2 = cushion;
+        BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion1.glb", scene, function(newMeshes){
+            newMeshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
+            newMeshes[0].position.y = .1;
+            cushion = newMeshes[0];
+        });
+        cushion2.dispose();
+    });
+            
     button2.addEventListener("click", () => {
         var cushion2 = cushion;
         BABYLON.SceneLoader.ImportMesh("", "https://raw.githubusercontent.com/andrewqTC/3Dlab/main/", "cushion2.glb", scene, function(newMeshes){
@@ -176,6 +187,7 @@
         });
         cushion2.dispose();
     })
+            
 
     var legButton1 = document.createElement("button");
     legButton1.style.top = "300px";
